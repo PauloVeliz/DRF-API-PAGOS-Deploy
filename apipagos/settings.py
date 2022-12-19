@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -38,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'pagos',
+    'users.apps.UsersConfig',
+    'pagos.apps.PagosConfig',
     'rest_framework_simplejwt',
     'rest_framework.authtoken',
 ]
@@ -144,4 +146,12 @@ REST_FRAMEWORK = {
         'user': '1000/day'
     }
 
+}
+
+AUTH_USER_MODEL = 'users.User'
+
+#CONFIGURAR EL SIMPLE JWT
+SIMPLE_JWT ={
+    'ACCESS_TOKEN_LIFETIME':timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME':timedelta(days=1)
 }

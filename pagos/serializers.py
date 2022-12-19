@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from .models import Pago,Usuario
+from .models import Pago,User
 
 class PagoSerializer(serializers.ModelSerializer):
-    usuario = serializers.SlugRelatedField(queryset = Usuario.objects.all(),slug_field='email')
+    user = serializers.SlugRelatedField(queryset = User.objects.all(),slug_field='email')
     class Meta:
         model = Pago
         fields = '__all__'
