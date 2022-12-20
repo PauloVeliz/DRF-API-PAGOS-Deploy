@@ -1,9 +1,12 @@
 from rest_framework import routers
-from .api import PagosView
+from django.urls import re_path,include
+
+from versionedPagos.v1.router import api_urlpatterns as api_v1
 
 router = routers.DefaultRouter()
-router.register(r'pagos',PagosView,'pagos')
 
-urlpatterns = []
+urlpatterns = router.urls
 
-urlpatterns += router.urls
+urlpatterns += [
+            re_path(r'api/v1/',include(api_v1)),
+            ]
