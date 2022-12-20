@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'users.apps.UsersConfig',
     'pagos.apps.PagosConfig',
+    'expired_payments.apps.ExpiredPaymentsConfig',
+    'services.apps.ServicesConfig',
     'rest_framework_simplejwt',
     'rest_framework.authtoken',
 ]

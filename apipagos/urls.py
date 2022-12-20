@@ -20,4 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/',include('users.urls')),
     path('', include('pagos.urls')),
+    path("v2/", include('services.urls')),
+    path("v2/",include('expired_payments.urls'))
 ]
