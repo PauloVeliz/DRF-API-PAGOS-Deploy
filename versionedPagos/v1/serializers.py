@@ -5,7 +5,8 @@ class PagoSerializer(serializers.ModelSerializer):
     user = serializers.SlugRelatedField(queryset = User.objects.all(),slug_field='email')
     class Meta:
         model = Pago
-        fields = '__all__'
+        fields = ['id','user','servicio_v1','monto','fecha_pago']
+        read_only_fields = ['fecha_pago']
     
     def validate_servicio_v1(self,value):
         if value:
