@@ -3,7 +3,7 @@ from rest_framework import status, generics,viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.request import Request
-from .serializers import SignUpSerializer, GetUserSerializer, UserSerializer
+from .serializers import SignUpSerializer, GetUserSerializer
 from rest_framework.permissions import IsAdminUser, IsAuthenticated,AllowAny
 from .tokens import create_jwt_pair_for_user
 from .models import User
@@ -55,26 +55,3 @@ class GetUsers(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
 
 
-class UsersViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_classes = {
-        'create': SignUpSerializer,
-        
-    }
-    default_serializer_class = UserSerializer 
-
-    def get_serializer_class(self):
-        print(self.action)
-        return self.serializer_classes.get(self.action, self.default_serializer_class)
-
-    def get_permissions(self):
-        """
-        Instantiates and returns the list of permissions that this view requires.
-        """
-        if self.action in ['destroy','partial_update','update','create','retrieve']:
-            permission_classes = [IsAdminUser]
-        else:
-            permission_classes=[AllowAny]
-        
-        return [permission() for permission in permission_classes]
-    

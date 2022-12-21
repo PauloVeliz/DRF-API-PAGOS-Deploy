@@ -8,6 +8,7 @@ class PagoSerializer(serializers.ModelSerializer):
         fields = '__all__'
     
     def validate_servicio_v1(self,value):
-        if value.lower() not in ['netflix','amazon video','star+','paramount+']:
-            raise serializers.ValidationError('Error, las opciones de servicio son [Netflix,Amazon Video,Star+,Paramount+]')
+        if value:
+            if value.lower() not in ['netflix','amazon video','star+','paramount+']:
+                raise serializers.ValidationError('Error, las opciones de servicio son [Netflix,Amazon Video,Star+,Paramount+]')
         return value
