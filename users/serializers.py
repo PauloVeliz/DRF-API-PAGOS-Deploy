@@ -3,12 +3,6 @@ from rest_framework.authtoken.models import Token
 from rest_framework.validators import ValidationError
 from .models import User
 
-
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ["email", "username", "first_name", "last_name"]
-        read_only=("password",)
     
 class SignUpSerializer(serializers.ModelSerializer):
     email = serializers.CharField(max_length=80)
