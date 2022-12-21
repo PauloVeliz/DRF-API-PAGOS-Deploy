@@ -3,11 +3,13 @@ from rest_framework.authtoken.models import Token
 from rest_framework.validators import ValidationError
 from .models import User
 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
-
+        fields = ["email", "username", "first_name", "last_name"]
+        read_only=("password",)
+    
 class SignUpSerializer(serializers.ModelSerializer):
     email = serializers.CharField(max_length=80)
     username = serializers.CharField(max_length=45)
@@ -20,7 +22,10 @@ class SignUpSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
 
         email_exists = User.objects.filter(email=attrs["email"]).exists()
+        username_exists = User.objects.filter(username=attrs["username"]).exists()
         if email_exists:
+            raise ValidationError("El email ya ha sido usado")
+        if username_exists:
             raise ValidationError("El email ya ha sido usado")
         return super().validate(attrs)
 
@@ -34,6 +39,8 @@ class SignUpSerializer(serializers.ModelSerializer):
 
         return user
 
+
+
 class GetUserSerializer(serializers.ModelSerializer):
     email = serializers.CharField(max_length=80)
     username = serializers.CharField(max_length=45)
@@ -41,4 +48,4 @@ class GetUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["email", "username", "password"]    
+        fields = ["email", "username", "password"]

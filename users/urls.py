@@ -1,5 +1,5 @@
 from rest_framework import routers
-from .api import LoginView,SignUpView,GetUsers
+from .api import LoginView,SignUpView,GetUsers,UsersViewSet
 from django.urls import path
 from rest_framework_simplejwt.views import(
     TokenObtainPairView,
@@ -9,8 +9,9 @@ from rest_framework_simplejwt.views import(
 
 
 router = routers.DefaultRouter()
-router.register('',GetUsers)
+router.register(r'get',GetUsers,basename="read-only")
 
+router.register(r'all',UsersViewSet,basename="user")
 #router.register('', UserMixins, 'users')
 #urlpatterns = router.urls
 urlpatterns=[

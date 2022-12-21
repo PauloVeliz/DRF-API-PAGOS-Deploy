@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'users.apps.UsersConfig',
     'pagos.apps.PagosConfig',
+    'expired_payments.apps.ExpiredPaymentsConfig',
+    'services.apps.ServicesConfig',
     'rest_framework_simplejwt',
     'rest_framework.authtoken',
 ]
@@ -135,14 +137,14 @@ REST_FRAMEWORK = {
     ),
 
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10,
+    'PAGE_SIZE': 100,
     
      'DEFAULT_THROTTLE_CLASSES': [
         'rest_framework.throttling.AnonRateThrottle',
         'rest_framework.throttling.UserRateThrottle'
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '10/day',
+        'anon': '100/day',
         'user': '1000/day'
     }
 
