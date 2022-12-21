@@ -1,4 +1,4 @@
-from .api import ServiceViewSet,UsersViewSet, ExpiredPaymentViewSet
+from .api import ServiceViewSet,UsersViewSet, ExpiredPaymentViewSet,PagosViewV2
 from rest_framework import routers
 from django.urls import path
 from users.api import LoginView,SignUpView,GetUsers
@@ -7,6 +7,11 @@ from rest_framework_simplejwt.views import(
     TokenRefreshView,
     TokenVerifyView,
 )
+router_pagos = routers.DefaultRouter()
+router_pagos.register(r'pagos',PagosViewV2,'pagosv2')
+
+pagos_urlpatterns = router_pagos.urls
+
 router_service = routers.DefaultRouter()
 router_service.register(r"services",ServiceViewSet,basename="service")
 
