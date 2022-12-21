@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'services.apps.ServicesConfig',
     'rest_framework_simplejwt',
     'rest_framework.authtoken',
+    'django.contrib.staticfiles',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
