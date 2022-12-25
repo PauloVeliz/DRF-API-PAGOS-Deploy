@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    "corsheaders",
     'users.apps.UsersConfig',
     'pagos.apps.PagosConfig',
     'expired_payments.apps.ExpiredPaymentsConfig',
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -159,3 +161,6 @@ SIMPLE_JWT ={
     'ACCESS_TOKEN_LIFETIME':timedelta(days=1),
     'REFRESH_TOKEN_LIFETIME':timedelta(days=1)
 }
+
+#CORS
+CORS_ALLOW_ALL_ORIGINS=True
