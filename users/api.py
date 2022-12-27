@@ -41,7 +41,8 @@ class LoginView(APIView):
             data={
                 "id":user.id,
                 "email":email,
-                "username":user.username
+                "username":user.username,
+                "isAdmin": user.is_staff
             }
             response = {"message": "Logeado correctamente", "data":data ,"tokens": tokens}
             return Response(data=response, status=status.HTTP_200_OK)
